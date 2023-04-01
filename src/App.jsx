@@ -7,8 +7,10 @@ function WeightLifter() {
 
   function handleWeightChange(index, value) {
     const newPlates = [...plates];
-    newPlates[index] += value;
-    setPlates(newPlates);
+    if (newPlates[index] + value >= 0) {
+      newPlates[index] += value;
+      setPlates(newPlates);
+    }
   }
 
   const totalWeight = plates.reduce((total, plate, index) => {
@@ -21,7 +23,7 @@ function WeightLifter() {
     .flatMap(({ count, weight }) => Array(count).fill(weight));
 
 
-    const buttonStyle = { border: '1px solid black', width: '100px', height: '50px' };
+  const buttonStyle = { border: '1px solid black', width: '100px', height: '50px' };
 
   return (
     <div style={{paddingLeft: '8px'}}>
@@ -45,7 +47,7 @@ function WeightLifter() {
       </div>
       <div style={{padding: '12px' }}>
         {WEIGHTS.map((weight, index) => (
-          <button style={buttonStyle} key={weight} onClick={() => handleWeightChange(index, -1)}>
+          <button style={buttonStyle} key={weight} onClick={() => handleWeightChange(index, -1)} disabled={plates[index] === 0}>
             -{weight} lbs
           </button>
         ))}
