@@ -20,9 +20,12 @@ function WeightLifter() {
     .filter(({ count }) => count > 0)
     .flatMap(({ count, weight }) => Array(count).fill(weight));
 
+
+    const buttonStyle = { border: '1px solid black', width: '100px', height: '50px' };
+
   return (
-    <div>
-      <h2>Total weight: {totalWeight} lbs</h2>
+    <div style={{paddingLeft: '8px'}}>
+      <h2 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', border: '1px solid black' }}>Total weight: {totalWeight} lbs</h2>
       {addedPlates.length > 0 && (
         <div>
           <p>Plates added:</p>
@@ -33,16 +36,16 @@ function WeightLifter() {
           </ul>
         </div>
       )}
-      <div>
+      <div style={{padding: '12px' }}>
         {WEIGHTS.map((weight, index) => (
-          <button key={weight} onClick={() => handleWeightChange(index, 1)}>
+          <button style={buttonStyle} key={weight} onClick={() => handleWeightChange(index, 1)}>
             +{weight} lbs
           </button>
         ))}
       </div>
-      <div>
+      <div style={{padding: '12px' }}>
         {WEIGHTS.map((weight, index) => (
-          <button key={weight} onClick={() => handleWeightChange(index, -1)}>
+          <button style={buttonStyle} key={weight} onClick={() => handleWeightChange(index, -1)}>
             -{weight} lbs
           </button>
         ))}
